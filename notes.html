@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Notes - AcademicFlow</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="icon.png" alt="AcademicFlow Icon">
+      <h1><span class="highlight">Academic</span>Flow</h1>
+    </div>
+    <p class="subtitle">Your intelligent study companion</p>
+    <button class="quick-add">+ Quick Add Task</button>
+  </header>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-btn">Dashboard</a>
+    <a href="calendar.html" class="nav-btn">Calendar</a>
+    <a href="notes.html" class="nav-btn active">Notes</a>
+  </nav>
+
+  <main>
+    <section class="notes-header">
+      <h2>Study Notes</h2>
+      <p>Organize and review your academic notes</p>
+    </section>
+
+    <section class="notes-controls">
+      <div class="search-filter">
+        <input type="text" id="searchNotes" placeholder="Search notes..." class="search-input">
+        <select id="subjectFilter" class="filter-select">
+          <option value="all">All Subjects</option>
+          <option value="mathematics">Mathematics</option>
+          <option value="physics">Physics</option>
+          <option value="chemistry">Chemistry</option>
+          <option value="biology">Biology</option>
+          <option value="computer-science">Computer Science</option>
+          <option value="literature">Literature</option>
+          <option value="history">History</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <button class="add-note-btn" id="addNoteBtn">+ Add New Note</button>
+    </section>
+
+    <!-- Add Note Modal -->
+    <div class="modal" id="noteModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="modalTitle">Add New Note</h3>
+          <span class="close" id="closeModal">&times;</span>
+        </div>
+        <div class="modal-body">
+          <form id="noteForm">
+            <div class="form-group">
+              <label for="noteTitle">Title</label>
+              <input type="text" id="noteTitle" required>
+            </div>
+            <div class="form-group">
+              <label for="noteSubject">Subject</label>
+              <select id="noteSubject" required>
+                <option value="">Select Subject</option>
+                <option value="mathematics">Mathematics</option>
+                <option value="physics">Physics</option>
+                <option value="chemistry">Chemistry</option>
+                <option value="biology">Biology</option>
+                <option value="computer-science">Computer Science</option>
+                <option value="literature">Literature</option>
+                <option value="history">History</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="noteContent">Content</label>
+              <textarea id="noteContent" rows="10" placeholder="Write your notes here..." required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="noteTags">Tags (comma separated)</label>
+              <input type="text" id="noteTags" placeholder="e.g. calculus, derivatives, limits">
+            </div>
+            <div class="form-actions">
+              <button type="button" class="btn-cancel" id="cancelBtn">Cancel</button>
+              <button type="submit" class="btn-save">Save Note</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notes Grid -->
+    <section class="notes-grid" id="notesGrid">
+      <!-- Sample Notes -->
+      <div class="note-card" data-subject="mathematics" data-tags="calculus,derivatives">
+        <div class="note-header">
+          <h3>Calculus Derivatives</h3>
+          <div class="note-meta">
+            <span class="subject-tag mathematics">Mathematics</span>
+            <span class="date">July 5, 2025</span>
+          </div>
+        </div>
+        <div class="note-content">
+          <p>Key derivative rules:</p>
+          <ul>
+            <li>Power Rule: d/dx(x^n) = nx^(n-1)</li>
+            <li>Product Rule: d/dx(uv) = u'v + uv'</li>
+            <li>Chain Rule: d/dx(f(g(x))) = f'(g(x)) · g'(x)</li>
+          </ul>
+        </div>
+        <div class="note-tags">
+          <span class="tag">calculus</span>
+          <span class="tag">derivatives</span>
+        </div>
+        <div class="note-actions">
+          <button class="edit-btn" onclick="editNote(this)">Edit</button>
+          <button class="delete-btn" onclick="deleteNote(this)">Delete</button>
+        </div>
+      </div>
+
+      <div class="note-card" data-subject="physics" data-tags="mechanics,forces">
+        <div class="note-header">
+          <h3>Newton's Laws of Motion</h3>
+          <div class="note-meta">
+            <span class="subject-tag physics">Physics</span>
+            <span class="date">July 4, 2025</span>
+          </div>
+        </div>
+        <div class="note-content">
+          <p><strong>First Law:</strong> An object at rest stays at rest, and an object in motion stays in motion, unless acted upon by an external force.</p>
+          <p><strong>Second Law:</strong> F = ma (Force equals mass times acceleration)</p>
+          <p><strong>Third Law:</strong> For every action, there is an equal and opposite reaction.</p>
+        </div>
+        <div class="note-tags">
+          <span class="tag">mechanics</span>
+          <span class="tag">forces</span>
+        </div>
+        <div class="note-actions">
+          <button class="edit-btn" onclick="editNote(this)">Edit</button>
+          <button class="delete-btn" onclick="deleteNote(this)">Delete</button>
+        </div>
+      </div>
+
+      <div class="note-card" data-subject="computer-science" data-tags="algorithms,sorting">
+        <div class="note-header">
+          <h3>Sorting Algorithms</h3>
+          <div class="note-meta">
+            <span class="subject-tag computer-science">Computer Science</span>
+            <span class="date">July 3, 2025</span>
+          </div>
+        </div>
+        <div class="note-content">
+          <p>Common sorting algorithms and their time complexities:</p>
+          <ul>
+            <li>Bubble Sort: O(n²)</li>
+            <li>Quick Sort: O(n log n) average, O(n²) worst</li>
+            <li>Merge Sort: O(n log n)</li>
+            <li>Heap Sort: O(n log n)</li>
+          </ul>
+        </div>
+        <div class="note-tags">
+          <span class="tag">algorithms</span>
+          <span class="tag">sorting</span>
+        </div>
+        <div class="note-actions">
+          <button class="edit-btn" onclick="editNote(this)">Edit</button>
+          <button class="delete-btn" onclick="deleteNote(this)">Delete</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Empty State -->
+    <div class="empty-state" id="emptyState" style="display: none;">
+      <div class="empty-icon">📝</div>
+      <h3>No notes found</h3>
+      <p>Start by creating your first note or adjust your search filters.</p>
+    </div>
+  </main>
+
+  <script>
+    // Notes functionality
+    let notes = JSON.parse(localStorage.getItem('academicNotes')) || [];
+    let editingNoteId = null;
+
+    // Modal functionality
+    const modal = document.getElementById('noteModal');
+    const addNoteBtn = document.getElementById('addNoteBtn');
+    const closeModal = document.getElementById('closeModal');
+    const cancelBtn = document.getElementById('cancelBtn');
+    const noteForm = document.getElementById('noteForm');
+
+    addNoteBtn.addEventListener('click', () => {
+      openModal();
+    });
+
+    closeModal.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+
+    cancelBtn.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+
+    function openModal(note = null) {
+      modal.style.display = 'block';
+      const modalTitle = document.getElementById('modalTitle');
+      
+      if (note) {
+        modalTitle.textContent = 'Edit Note';
+        document.getElementById('noteTitle').value = note.title;
+        document.getElementById('noteSubject').value = note.subject;
+        document.getElementById('noteContent').value = note.content;
+        document.getElementById('noteTags').value = note.tags.join(', ');
+        editingNoteId = note.id;
+      } else {
+        modalTitle.textContent = 'Add New Note';
+        noteForm.reset();
+        editingNoteId = null;
+      }
+    }
+
+    // Form submission
+    noteForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const title = document.getElementById('noteTitle').value;
+      const subject = document.getElementById('noteSubject').value;
+      const content = document.getElementById('noteContent').value;
+      const tags = document.getElementById('noteTags').value.split(',').map(tag => tag.trim()).filter(tag => tag);
+      
+      const note = {
+        id: editingNoteId || Date.now(),
+        title,
+        subject,
+        content,
+        tags,
+        date: new Date().toLocaleDateString('en-US', { 
+          year: 'numeric', 
+          month: 'long', 
+          day: 'numeric' 
+        })
+      };
+
+      if (editingNoteId) {
+        const index = notes.findIndex(n => n.id === editingNoteId);
+        notes[index] = note;
+      } else {
+        notes.push(note);
+      }
+
+      localStorage.setItem('academicNotes', JSON.stringify(notes));
+      modal.style.display = 'none';
+      renderNotes();
+    });
+
+    // Search and filter functionality
+    document.getElementById('searchNotes').addEventListener('input', filterNotes);
+    document.getElementById('subjectFilter').addEventListener('change', filterNotes);
+
+    function filterNotes() {
+      const searchTerm = document.getElementById('searchNotes').value.toLowerCase();
+      const subjectFilter = document.getElementById('subjectFilter').value;
+      
+      const noteCards = document.querySelectorAll('.note-card');
+      let visibleCount = 0;
+
+      noteCards.forEach(card => {
+        const title = card.querySelector('h3').textContent.toLowerCase();
+        const content = card.querySelector('.note-content').textContent.toLowerCase();
+        const subject = card.dataset.subject;
+        const tags = card.dataset.tags;
+
+        const matchesSearch = title.includes(searchTerm) || content.includes(searchTerm) || tags.includes(searchTerm);
+        const matchesSubject = subjectFilter === 'all' || subject === subjectFilter;
+
+        if (matchesSearch && matchesSubject) {
+          card.style.display = 'block';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      document.getElementById('emptyState').style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+
+    function editNote(button) {
+      const noteCard = button.closest('.note-card');
+      const title = noteCard.querySelector('h3').textContent;
+      const subject = noteCard.dataset.subject;
+      const content = noteCard.querySelector('.note-content').innerHTML;
+      const tags = Array.from(noteCard.querySelectorAll('.tag')).map(tag => tag.textContent);
+      
+      // Convert HTML content back to plain text for editing
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = content;
+      const plainContent = tempDiv.textContent || tempDiv.innerText || '';
+
+      const note = {
+        id: parseInt(noteCard.dataset.id) || Date.now(),
+        title,
+        subject,
+        content: plainContent,
+        tags
+      };
+
+      openModal(note);
+    }
+
+    function deleteNote(button) {
+      if (confirm('Are you sure you want to delete this note?')) {
+        const noteCard = button.closest('.note-card');
+        const noteId = parseInt(noteCard.dataset.id);
+        
+        notes = notes.filter(note => note.id !== noteId);
+        localStorage.setItem('academicNotes', JSON.stringify(notes));
+        noteCard.remove();
+        
+        if (document.querySelectorAll('.note-card').length === 0) {
+          document.getElementById('emptyState').style.display = 'block';
+        }
+      }
+    }
+
+    function renderNotes() {
+      // This function would re-render all notes from localStorage
+      // For simplicity, we're using the existing HTML structure
+      filterNotes();
+    }
+
+    // Initialize
+    renderNotes();
+  </script>
+</body>
+</html>

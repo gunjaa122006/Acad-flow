@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calendar - AcademicFlow</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="icon.png" alt="AcademicFlow Icon">
+      <h1><span class="highlight">Academic</span>Flow</h1>
+    </div>
+    <p class="subtitle">Your intelligent study companion</p>
+    <button class="quick-add">+ Quick Add Task</button>
+  </header>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-btn">Dashboard</a>
+    <a href="calendar.html" class="nav-btn active">Calendar</a>
+    <a href="notes.html" class="nav-btn">Notes</a>
+  </nav>
+
+  <main>
+    <section class="calendar-header">
+      <h2>Academic Calendar</h2>
+      <p>Organize your study schedule and important dates</p>
+    </section>
+
+    <section class="calendar-controls">
+      <div class="month-navigation">
+        <button class="nav-arrow" id="prevMonth">&larr;</button>
+        <h3 id="currentMonth">July 2025</h3>
+        <button class="nav-arrow" id="nextMonth">&rarr;</button>
+      </div>
+      <div class="view-options">
+        <button class="view-btn active" data-view="month">Month</button>
+        <button class="view-btn" data-view="week">Week</button>
+        <button class="view-btn" data-view="agenda">Agenda</button>
+      </div>
+    </section>
+
+    <section class="calendar-container">
+      <div class="calendar-grid">
+        <div class="calendar-header-row">
+          <div class="day-header">Sun</div>
+          <div class="day-header">Mon</div>
+          <div class="day-header">Tue</div>
+          <div class="day-header">Wed</div>
+          <div class="day-header">Thu</div>
+          <div class="day-header">Fri</div>
+          <div class="day-header">Sat</div>
+        </div>
+        
+        <div class="calendar-body">
+          <!-- Previous month days -->
+          <div class="calendar-day other-month">29</div>
+          <div class="calendar-day other-month">30</div>
+          
+          <!-- Current month days -->
+          <div class="calendar-day">1</div>
+          <div class="calendar-day">2</div>
+          <div class="calendar-day">3</div>
+          <div class="calendar-day">4</div>
+          <div class="calendar-day">5</div>
+          
+          <div class="calendar-day">6</div>
+          <div class="calendar-day today">7
+            <div class="event assignment">Math Assignment Due</div>
+          </div>
+          <div class="calendar-day">8</div>
+          <div class="calendar-day">9</div>
+          <div class="calendar-day">10
+            <div class="event exam">Physics Quiz</div>
+          </div>
+          <div class="calendar-day">11</div>
+          <div class="calendar-day">12</div>
+          
+          <div class="calendar-day">13</div>
+          <div class="calendar-day">14</div>
+          <div class="calendar-day">15
+            <div class="event project">Project Presentation</div>
+          </div>
+          <div class="calendar-day">16</div>
+          <div class="calendar-day">17</div>
+          <div class="calendar-day">18</div>
+          <div class="calendar-day">19</div>
+          
+          <div class="calendar-day">20</div>
+          <div class="calendar-day">21</div>
+          <div class="calendar-day">22
+            <div class="event study">Study Group</div>
+          </div>
+          <div class="calendar-day">23</div>
+          <div class="calendar-day">24</div>
+          <div class="calendar-day">25</div>
+          <div class="calendar-day">26</div>
+          
+          <div class="calendar-day">27</div>
+          <div class="calendar-day">28</div>
+          <div class="calendar-day">29</div>
+          <div class="calendar-day">30</div>
+          <div class="calendar-day">31</div>
+          
+          <!-- Next month days -->
+          <div class="calendar-day other-month">1</div>
+          <div class="calendar-day other-month">2</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="upcoming-events">
+      <h3>Upcoming Events</h3>
+      <div class="event-list">
+        <div class="event-item assignment">
+          <div class="event-date">July 7</div>
+          <div class="event-details">
+            <h4>Math Assignment Due</h4>
+            <p>Calculus Problem Set #3</p>
+          </div>
+        </div>
+        <div class="event-item exam">
+          <div class="event-date">July 10</div>
+          <div class="event-details">
+            <h4>Physics Quiz</h4>
+            <p>Chapter 8: Electromagnetic Waves</p>
+          </div>
+        </div>
+        <div class="event-item project">
+          <div class="event-date">July 15</div>
+          <div class="event-details">
+            <h4>Project Presentation</h4>
+            <p>Computer Science Final Project</p>
+          </div>
+        </div>
+        <div class="event-item study">
+          <div class="event-date">July 22</div>
+          <div class="event-details">
+            <h4>Study Group</h4>
+            <p>Biology Exam Preparation</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
